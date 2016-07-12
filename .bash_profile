@@ -1,4 +1,3 @@
-
 #----------------------------------------------------------
 # added by Anaconda 2.3.0 installer
 export PATH="/Users/michael/anaconda/bin:$PATH"
@@ -57,4 +56,5 @@ alias updot='cp ~/.bash_profile ~/dotfiles; cp ~/.tmux.conf ~/dotfiles; cp ~/.vi
 #----------------------------------------------------------
 #tmux aliases
 alias tfoobar='tmux attach -t foobar||tmux new -s foobar'
+alias tatt='tmux attach -t '
 alias tls='tmux list-sessions'
