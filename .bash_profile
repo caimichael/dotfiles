@@ -56,5 +56,6 @@ alias updot='cp ~/.bash_profile ~/dotfiles; cp ~/.tmux.conf ~/dotfiles; cp ~/.vi
 #----------------------------------------------------------
 #tmux aliases
 alias tfoobar='tmux attach -t foobar||tmux new -s foobar'
-alias tatt='tmux attach -t '
+alias tmuxa='tmux attach -t'
+alias tmuxd='tmux detach'
 alias tls='tmux list-sessions'
