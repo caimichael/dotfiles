@@ -6,17 +6,11 @@ export PATH="/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin:$PATH"
 
 alias apy='use_anaconda_python'
 alias bpy='reset_path'
-#----------------------------------------------------------
-# These two require identify be installed, part of ImageMagick. Install the imagemagick package for your system first. 
-# # Pass the filename of an image and the first will provide a range of information while the second will just provide the resolution: 
-alias imginfo="identify -format '-- %f -- \nType: %m\nSize: %b bytes\nResolution: %wpx x %hpx\nColors: %k'"
-alias imgres="identify -format '%f: %wpx x %hpx\n'"
 
-alias ll='ls -Ghlas'
+#navigation
 alias ..='cd ..'
 alias ...='cd .. ; cd ..'
-alias g='grep -i'  #case insensitive grep
-alias f='find . -iname'
+
 #----------------------------------------------------------
 
 ### history bash shell useful settings ###
@@ -51,7 +45,7 @@ shopt -s cdable_vars # set the bash option so that no '$' is required when using
 
 #----------------------------------------------------------
 #for updating dotfile folder
-alias updot='cp ~/.bash_profile ~/dotfiles; cp ~/.tmux.conf ~/dotfiles; cp ~/.vimrc ~/dotfiles'
+alias updot='cp ~/.bashrc ~/dotfiles; cp ~/.tmux.conf ~/dotfiles; cp ~/.vimrc ~/dotfiles'
 
 #----------------------------------------------------------
 #tmux aliases
@@ -59,3 +53,7 @@ alias tfoobar='tmux attach -t foobar||tmux new -s foobar'
 alias tmuxa='tmux attach -t'
 alias tmuxd='tmux detach'
 alias tls='tmux list-sessions'
+
+#Chris's nice grep
+function mygrep { fgrep -ris $1 . --colour --line-number; } 
+
