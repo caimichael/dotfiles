@@ -2,11 +2,19 @@ inoremap jk <ESC>
 
 let mapleader = "\<Space>"
 
-execute pathogen#infect()
-filetype plugin indent on
+filetype plugin on
 syntax on
+set clipboard=unnamed
 set encoding=utf-8
-set number
+set relativenumber
+
+"Color stuff
+set t_Co=256
+
+"Solarized work in progress
+"set term=xterm-256color
+"set background=light
+"colorscheme default
 
 "============"
    "Vundle"
@@ -25,6 +33,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
+
+Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'tpope/vim-sensible'
 
@@ -52,6 +62,9 @@ nmap <CR> o<Esc>
 "Nerd Tree Setup
 nnoremap <Leader>d :NERDTree<CR>
 map <Leader>t :NERDTreeToggle<cr>
+
+"Word Deletion in Normal Mode
+"Figure out how to map Ctrl-D to daw (delete word where cursor is)
 
 "============"
    "Style"
@@ -91,6 +104,24 @@ function! HLNext (blinktime)
   call matchdelete(ring)
   redraw
 endfunction
+
+"============"
+"Brady's Junk"
+"============"
+
+" persist undo
+let undodir = '$HOME/.vim/undodir'
+call system('mkdir -p ' . undodir)
+set undofile
+
+" persist last cursor position
+call system('mkdir -p' . '$HOME/.vim/view')
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
+
+" Fast Scroll
+map <C-J> 5j
+map <C-K> 5k
 
 "============="
 "Miscellaneous"
