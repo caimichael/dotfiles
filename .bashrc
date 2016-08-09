@@ -50,10 +50,11 @@ alias updot='cp ~/.bashrc ~/dotfiles; cp ~/.tmux.conf ~/dotfiles; cp ~/.vimrc ~/
 #----------------------------------------------------------
 #tmux aliases
 alias tfoobar='tmux attach -t foobar||tmux new -s foobar'
+alias tmuxn='tmux new -s'
 alias tmuxa='tmux attach -t'
 alias tmuxd='tmux detach'
 alias tls='tmux list-sessions'
 
 #Chris's nice grep
-function mygrep { fgrep -ris $1 . --colour --line-number; } 
+function mygrep { fgrep -nirs $1 . --colour; } 
 
