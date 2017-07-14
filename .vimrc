@@ -1,5 +1,3 @@
-inoremap jk <ESC>
-
 let mapleader = "\<Space>"
 
 filetype plugin on
@@ -8,18 +6,10 @@ set clipboard=unnamed
 set encoding=utf-8
 set relativenumber
 set esckeys
-
-"Color stuff
-set background=dark
-let g:solarized_termtrans=1
-colorscheme solarized
-"term=xterm-256color
-
-
-"============"
+"============="
    "Vundle"
-"============"
-
+"============="
+"
 set shell=/bin/bash
 
 set nocompatible
@@ -49,30 +39,6 @@ Plugin 'kien/ctrlp.vim'
 
 call vundle#end()
 filetype plugin indent on
-
-"============"
-"Key Mappings"
-"============"
-map <C-n> :NERDTreeToggle<CR>
-
-"For adding new line without entering insert mode
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
-
-"Nerd Tree Setup
-nnoremap <Leader>d :NERDTree<CR>
-map <Leader>t :NERDTreeToggle<cr>
-
-"Word Deletion in Normal Mode
-"Figure out how to map Ctrl-D to daw (delete word where cursor is)
-
-"============"
-   "Style"
-"============"
-
-"Ensures conformity to PEP-8 Length guideline <80 chars
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"match OverLength /\%81v.\+/
 
 "============="
 " INDENTATION "
@@ -105,6 +71,16 @@ function! HLNext (blinktime)
   redraw
 endfunction
 
+"==================="
+"Thanks @micahjsmith"
+"==================="
+set nobackup
+set nowb
+set noswapfile
+
+"Save pinky finger from harm.
+inoremap jk <Esc> 
+
 "============"
 "Brady's Junk"
 "============"
@@ -122,9 +98,5 @@ au BufWinEnter * silent loadview
 " Fast Scroll
 map <C-J> 5j
 map <C-K> 5k
-
-"============="
-"Miscellaneous"
-"============="
 
 set shortmess+=A

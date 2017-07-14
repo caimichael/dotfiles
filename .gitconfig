@@ -1,0 +1,38 @@
+[user]
+    name = Michael Cai
+    email = michaeldcai@gmail.com
+[github]
+    user = caimichael
+
+#Thanks @micahjsmith
+[alias]
+    br = branch
+    ch = checkout
+    co = commit
+    dt = difftool
+    d  = difftool -g
+    gr = grep
+    st = status
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[difftool "vimdiff"]
+    # vim will otherwise fail on filenames starting with a '+'
+    cmd = vimdiff -- $LOCAL $REMOTE
+[branch]
+    autosetuprebase = always
+[push]
+    default = tracking
+[core]
+    #warn on whitespace issues
+    whitespace = trailing-space,space-before-tab
+[apply]
+    #fix whitespace issues in patches
+    whitespace = fix
+
+[url "https://"]
+    insteadof = git://
+    pushInsteadOf = git://
+[pull]
+	rebase = true

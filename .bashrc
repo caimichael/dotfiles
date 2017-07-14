@@ -1,60 +1,59 @@
-#----------------------------------------------------------
-# added by Anaconda 2.3.0 installer
-export PATH="/Users/michael/anaconda/bin:$PATH"
+# Michael Cai's .bashrc
 
-export PATH="/Applications/Julia-0.4.3.app/Contents/Resources/julia/bin:$PATH" 
+export EDITOR=vim
 
-alias apy='use_anaconda_python'
-alias bpy='reset_path'
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
-#navigation
-alias ..='cd ..'
-alias ...='cd .. ; cd ..'
+#Thanks @micahjsmith & @pearlzli
+# User specific aliases
+alias ..='\cd ..'
+alias ...='\cd ../..'
+alias ....='\cd ../../..'
+alias e='evince'
 
-#----------------------------------------------------------
+# ls displays
+alias ls='ls --color'
+alias la='ls -a'
+alias ld='ls -d */'
+alias ll='ls -l -h'
 
-### history bash shell useful settings ###
+alias ga="git add"
+alias gb="git branch"
+alias gcm="git commit -m"
+alias gd="git diff"
+alias gdt="git difftool"
+alias gg="git grep"
+alias gpo="git push origin"
+alias gs="git status"
 
-export HISTCONTROL=ignoredups # Ignores dupes in the history
-
-#----------------------------------------------------------
-### BEGIN: easy folder bookmarks in the shell ###
-
-# allows you to save bookmarks to folders
-#  cd ~/src/git
-#  save git
-#  cd ~/src/git/killer/rails/awesome/app
-#  save awesome_app
-# list your bookmarks
-#  show
-#   git="~/src/git"
-#   awesome_app="~/src/git/killer/rails/awesome/app"
-# easily cd into the bookmarks from any directory
-#  cd git
-#  cd awesome_app
-if [ ! -f ~/.dirs ]; then  # if doesn't exist, create it
-  touch ~/.dirs
-  fi
-#
-alias show='cat ~/.dirs'
-  save (){
-      command sed "/!$/d" ~/.dirs > ~/.dirs1; mv ~/.dirs1 ~/.dirs; echo "$@"=\"`pwd`\" >> ~/.dirs; source ~/.dirs;
-      }
-source ~/.dirs  # Initialization for the above 'save' facility: source the .sdirs file
-shopt -s cdable_vars # set the bash option so that no '$' is required when using the above facility
-
-#----------------------------------------------------------
-#for updating dotfile folder
-alias updot='cp ~/.bashrc ~/dotfiles; cp ~/.tmux.conf ~/dotfiles; cp ~/.vimrc ~/dotfiles'
-
-#----------------------------------------------------------
-#tmux aliases
-alias tfoobar='tmux attach -t foobar||tmux new -s foobar'
 alias tmuxn='tmux new -s'
 alias tmuxa='tmux attach -t'
 alias tmuxd='tmux detach'
 alias tls='tmux list-sessions'
 
-#Chris's nice grep
-function mygrep { fgrep -nirs $1 . --colour; } 
+# When evince and other graphical displays don't work, it's often because the
+# DISPLAY environment variable inside tmux isn't the same as the one outside
+# tmux.
+# 
+# 1. Detach from tmux session and use cache_display
+# 2. Reattach to tmux session and use parse_display. (You'll have to do this in
+#    each pane in which you want to open a graphical display.)
+cache_display() {
+    echo "$DISPLAY" > ~/.DISPLAY
+    echo "DISPLAY cached as $DISPLAY"
+}
 
+parse_display() {
+    DISPLAY_OLD="$DISPLAY"
+    export DISPLAY="$(cat ~/.DISPLAY)"
+    echo "DISPLAY updated from $DISPLAY_OLD to $DISPLAY"
+}
+
+# Stop graphical display popup for password when git pushing
+unset SSH_ASKPASS
+
+# User specific aliases and functions
+source ~/.aliases
