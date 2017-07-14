@@ -79,7 +79,7 @@ set nowb
 set noswapfile
 
 "Save pinky finger from harm.
-inoremap jk <Esc> 
+inoremap jj <Esc> 
 
 "============"
 "Brady's Junk"

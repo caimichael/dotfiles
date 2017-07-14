@@ -7,7 +7,12 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-#Thanks @micahjsmith & @pearlzli
+# Enable if your system doesn't have native vim clipboard support
+# Because there isn't clipboard support on the vim shipped with RHL
+alias vim='gvim -v'
+alias v='gvim -v'
+
+# Thanks @micahjsmith & @pearlzli
 # User specific aliases
 alias ..='\cd ..'
 alias ...='\cd ../..'
@@ -23,6 +28,7 @@ alias ll='ls -l -h'
 alias ga="git add"
 alias gb="git branch"
 alias gcm="git commit -m"
+alias gch="git checkout"
 alias gd="git diff"
 alias gdt="git difftool"
 alias gg="git grep"
@@ -33,6 +39,11 @@ alias tmuxn='tmux new -s'
 alias tmuxa='tmux attach -t'
 alias tmuxd='tmux detach'
 alias tls='tmux list-sessions'
+
+#Chris's nice grep
+mygrep() {
+    fgrep -nirs $1 . --colour;
+}
 
 # When evince and other graphical displays don't work, it's often because the
 # DISPLAY environment variable inside tmux isn't the same as the one outside
