@@ -3,14 +3,14 @@
     email = michaeldcai@gmail.com
 [github]
     user = caimichael
-
-#Thanks @micahjsmith
+#Thanks @micahjsmith & @pearlzli
 [alias]
     br = branch
     ch = checkout
     co = commit
     dt = difftool
     d  = difftool -g
+    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date=short
     gr = grep
     st = status
 [diff]
@@ -20,6 +20,10 @@
 [difftool "vimdiff"]
     # vim will otherwise fail on filenames starting with a '+'
     cmd = vimdiff -- $LOCAL $REMOTE
+[merge]
+    tool = meld
+[mergetool]
+    prompt = false
 [branch]
     autosetuprebase = always
 [push]
@@ -30,7 +34,6 @@
 [apply]
     #fix whitespace issues in patches
     whitespace = fix
-
 [url "https://"]
     insteadof = git://
     pushInsteadOf = git://

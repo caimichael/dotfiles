@@ -3,9 +3,24 @@ let mapleader = "\<Space>"
 filetype plugin on
 syntax on
 set clipboard=unnamed
+if $TMUX == ''
+    set clipboard+=unnamed
+endif
 set encoding=utf-8
-set relativenumber
 set esckeys
+
+"Line number management
+set relativenumber
+set number
+"for turning off line numbers
+nmap <C-N><C-N> :set invnumber \| :set invrelativenumber<CR>
+
+"============="
+  "Solarized"
+"============="
+set background=dark
+colorscheme solarized
+
 "============="
    "Vundle"
 "============="
@@ -79,12 +94,12 @@ set nowb
 set noswapfile
 
 "Save pinky finger from harm.
-inoremap jj <Esc> 
+inoremap jk <Esc> 
+vnoremap jk <Esc>
 
 "============"
 "Brady's Junk"
 "============"
-
 " persist undo
 let undodir = '$HOME/.vim/undodir'
 call system('mkdir -p ' . undodir)
