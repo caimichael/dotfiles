@@ -1,23 +1,40 @@
-let mapleader = "\<Space>"
+"================="
+" Michael's vimrc "
+"================="
+"
+let mapleader = ","
 
 filetype plugin on
-syntax on
 set clipboard=unnamed
 if $TMUX == ''
     set clipboard+=unnamed
 endif
 set encoding=utf-8
 set esckeys
+set nobackup
+set nowb
+set noswapfile
+set shortmess+=A
 
-"Line number management
+" Search behavior
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+nnoremap <Leader><space> :noh<cr>
+
+" Line number management
 set relativenumber
 set number
-"for turning off line numbers
+" for optionally turning off line numbers
 nmap <C-N><C-N> :set invnumber \| :set invrelativenumber<CR>
 
 "============="
   "Solarized"
 "============="
+"
+syntax enable
+let g:solarized_termtrans=1
 set background=dark
 colorscheme solarized
 
@@ -35,25 +52,42 @@ set rtp+=$HOME/.vim/bundle/Vundle.vim
 call vundle#begin('$HOME/.vim/bundle')
 
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
-
 Plugin 'scrooloose/nerdcommenter'
-
 Plugin 'tpope/vim-sensible'
-
-Plugin 'danro/rename.vim'
-
-Plugin 'JuliaLang/julia-vim'
-
+Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-
 Plugin 'kien/ctrlp.vim'
+Plugin 'luochen1990/rainbow'
+Plugin 'easymotion/vim-easymotion'
 
 call vundle#end()
 filetype plugin indent on
+
+"=================="
+" PACKAGE SETTINGS "
+"=================="
+"
+" NERDTree
+map <Leader>t :NERDTreeToggle <CR>
+let NERDTreeQuitOnOpen = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+" NERDCommenter
+let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 1
+let g:NERDTrimTrialingWhitespace = 1
+
+" Rainbow
+let g:rainbow_active = 1
+
+" Easymotion
+map <Leader> <Plug>e                " <Leader><Leader>e for easy searching
+nmap s <Plug>(easymotion-overwin-f) " <Leader>s <char> for bi-directional char easy search
+nmap S <Plug>(easymotion-overwin-f2)" <Leader>S <char><char> for bi-directional 2char search
 
 "============="
 " INDENTATION "
@@ -71,9 +105,24 @@ set expandtab
 set autoindent                  " Auto indent
 set smartindent                 " Smart indent
 
-"Damian Conway's Die Blinkënmatchen: highlight matches
-set hlsearch
+" Toggle autoindent for copy paste
+set pastetoggle=<F2>
 
+"========="
+" MOTION  "
+"========="
+"
+"Save pinky finger from harm.
+inoremap jk <Esc>
+vnoremap jk <Esc>
+
+" Fast Scroll
+map <C-J> 5j
+map <C-K> 5k
+map <C-H> 5h
+map <C-L> 5l
+
+" Damian Conway's Die Blinkënmatchen: highlight matches
 nnoremap <silent> n n:call HLNext(0.1)<cr>
 nnoremap <silent> N N:call HLNext(0.1)<cr>
 
@@ -86,20 +135,21 @@ function! HLNext (blinktime)
   redraw
 endfunction
 
-"==================="
-"Thanks @micahjsmith"
-"==================="
-set nobackup
-set nowb
-set noswapfile
+"========="
+" MOTION  "
+"========="
 
-"Save pinky finger from harm.
-inoremap jk <Esc> 
-vnoremap jk <Esc>
+"Highlight trailing whitespace
+highlight ExtraWhiteSpace ctermbg=darkgreen guibg=lightgreen
+match ExtraWhitespace /\s\+\%#\@<!$/
 
-"============"
-"Brady's Junk"
-"============"
+"F5 to strip all trailing whitespace
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"==============="
+" MISCELLANEOUS "
+"==============="
+"
 " persist undo
 let undodir = '$HOME/.vim/undodir'
 call system('mkdir -p ' . undodir)
@@ -107,11 +157,6 @@ set undofile
 
 " persist last cursor position
 call system('mkdir -p' . '$HOME/.vim/view')
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+autocmd BufWinLeave ?* mkview
+autocmd BufWinEnter ?* silent! loadview
 
-" Fast Scroll
-map <C-J> 5j
-map <C-K> 5k
-
-set shortmess+=A

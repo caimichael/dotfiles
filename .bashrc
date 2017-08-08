@@ -1,23 +1,17 @@
 # Michael Cai's .bashrc
 
 export EDITOR=vim
+export TERM=xterm-256color
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# Enable if your system doesn't have native vim clipboard support
-# Because there isn't clipboard support on the vim shipped with RHL
-alias vim='gvim -v'
-alias v='gvim -v'
-
-# Thanks @micahjsmith & @pearlzli
 # User specific aliases
 alias ..='\cd ..'
 alias ...='\cd ../..'
 alias ....='\cd ../../..'
-alias e='evince'
 alias mv='mv -i'
 alias cp='cp -i'
 
@@ -81,7 +75,7 @@ umask 0002
 # When evince and other graphical displays don't work, it's often because the
 # DISPLAY environment variable inside tmux isn't the same as the one outside
 # tmux.
-# 
+#
 # 1. Detach from tmux session and use cache_display
 # 2. Reattach to tmux session and use parse_display. (You'll have to do this in
 #    each pane in which you want to open a graphical display.)
