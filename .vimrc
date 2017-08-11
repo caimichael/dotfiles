@@ -71,6 +71,9 @@ map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
 nnoremap <silent><Leader><space> :noh<cr>
 
+" Indentline
+let g:indentLine_enabled = 1
+
 "============="
 " INDENTATION "
 "============="
