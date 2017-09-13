@@ -51,13 +51,15 @@ let g:NERDTrimTrialingWhitespace = 1
 
 " Airline
 let g:airline_solarized_bg='dark'
+" Enable the list of buffers/show filename
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Rainbow
 let g:rainbow_active = 1
 
 " Easymotion
 map <Leader> <Plug>e
-nmap s <Plug>(easymotion-overwin-f)
 nmap S <Plug>(easymotion-overwin-f2)
 
 " IncSearch/General Search Behavior
@@ -70,9 +72,28 @@ map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
 nnoremap <silent><Leader><space> :noh<cr>
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabNoCompleteBefore = ['=','^',',','\s']
+let g:SuperTabNoCompleteAfter  = ['=','^',',','\s']
 
 " Indentline
-let g:indentLine_enabled = 1
+let g:indentLine_enabled = 0
+
+"============="
+" ENVIRONMENT "
+"============="
+"
+" Easier split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Closing all split buffers except active
+nnoremap <silent> <C-O> <Esc>:on<CR>
 
 "============="
 " INDENTATION "
@@ -96,24 +117,45 @@ set smartindent
 "
 "Save pinky finger from harm.
 inoremap jk <Esc>
-vnoremap hl <Esc>
+vnoremap q <Esc>
+nmap ; :
 
 " Fast Scroll
-map <C-J> 5j
-map <C-K> 5k
-map <C-H> 5h
-map <C-L> 5l
+nnoremap J 5j
+nnoremap K 5k
+nnoremap H 5h
+nnoremap L 5l
+" Fix this...
+" nmap [ }
+" nmap ] {
+
+" Nice Parenthesis conventions
+" Auto-add closing paren
+" inoremap ( ()<Esc>:let leavechar=")"<CR>i
+" inoremap [ []<Esc>:let leavechar="]"<CR>i
+" inoremap { {}<Esc>:let leavechar="}"<CR>i
+" Leave parens easily
+" imap <C-m> <Esc>:exec "normal f" .leavechar<CR>a<space>
+" ^above solution has some strange issues with insert mode enter
 
 "=========="
 " CLEANUP  "
 "=========="
-
+"
 "Highlight trailing whitespace
 highlight ExtraWhiteSpace ctermbg=darkgreen guibg=lightgreen
 match ExtraWhitespace /\s\+\%#\@<!$/
 
 "F5 to strip all trailing whitespace
 nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+"===================="
+" PERSONAL SHORTCUTS "
+"===================="
+
+" Spacing above and below
+nnoremap <CR> o<Esc>
+nnoremap \ O<Esc>
 
 "==============="
 " MISCELLANEOUS "
