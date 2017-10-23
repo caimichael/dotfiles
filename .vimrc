@@ -6,6 +6,7 @@ execute pathogen#infect()
 let mapleader = ","
 
 filetype plugin on
+set mouse=a
 set shell=/bin/bash
 set clipboard=unnamed
 if $TMUX == ''
@@ -19,6 +20,8 @@ set nowb
 set noswapfile
 set nocompatible
 set shortmess+=A
+set foldmethod=manual
+set textwidth=80
 
 "============="
   "Solarized"
@@ -162,13 +165,13 @@ nnoremap \ O<Esc>
 "==============="
 "
 " persist undo
-let undodir = '$HOME/.vim/undodir'
-call system('mkdir -p ' . undodir)
+call system('mkdir -p ' . '$HOME/.vim/undodir')
+set undodir=$HOME/.vim/undodir
 set undofile
 
 " persist last cursor position
 call system('mkdir -p' . '$HOME/.vim/view')
-autocmd BufWinLeave ?* mkview
+autocmd BufWinLeave ?* silent mkview
 autocmd BufWinEnter ?* silent! loadview
 
 " Prepping for Tmux Copy
