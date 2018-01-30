@@ -21,7 +21,11 @@ set noswapfile
 set nocompatible
 set shortmess+=A
 set foldmethod=manual
-set textwidth=80
+set textwidth=90
+set wrap
+set wrapscan
+set linebreak               " Don't break midword when wrapping lines
+set autoread    " Reload file open in Vim if edited outside of Vim session
 
 "============="
   "Solarized"
@@ -74,7 +78,10 @@ map / <Plug>(incsearch-forward)
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
 map *  <Plug>(incsearch-nohl-*)
+
 nnoremap <silent><Leader><space> :noh<cr>
+
+" Search and replace word underneath cursor
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " Supertab
@@ -84,6 +91,13 @@ let g:SuperTabNoCompleteAfter  = ['=','^',',','\s']
 
 " Indentline
 let g:indentLine_enabled = 0
+
+" Ctrl-P Fuzzy Search
+let g:ctrlp_working_path_mode = 'c'
+
+" Vimtex
+let g:airline#extensions#vimtex#enabled = 1
+let g:vimtex_compiler_latexmk = {'continuous': 0}
 
 "============="
 " ENVIRONMENT "
@@ -104,7 +118,6 @@ nnoremap <silent> <C-O> <Esc>:on<CR>
 "
 " Render tabs as 4 spaces
 set tabstop=4                   " Tabs are four spaces
-set softtabstop=4               " Tabs counts as four spaces
 set shiftwidth=4                " << >> gives you four spaces
 
 " For those who have the sanity to use 4 spaces
@@ -123,16 +136,23 @@ inoremap jk <Esc>
 vnoremap q <Esc>
 nmap ; :
 
-" Fast Scroll
+" Fast scroll
 nnoremap J 5j
 nnoremap K 5k
 nnoremap H 5h
 nnoremap L 5l
+
+" Fast visual block selection
+vnoremap J 5j
+vnoremap K 5k
+vnoremap H 5h
+vnoremap L 5l
+
 " Fix this...
 " nmap [ }
 " nmap ] {
 
-" Nice Parenthesis conventions
+" Nice parenthesis conventions
 " Auto-add closing paren
 " inoremap ( ()<Esc>:let leavechar=")"<CR>i
 " inoremap [ []<Esc>:let leavechar="]"<CR>i
@@ -150,7 +170,7 @@ highlight ExtraWhiteSpace ctermbg=darkgreen guibg=lightgreen
 match ExtraWhitespace /\s\+\%#\@<!$/
 
 "F5 to strip all trailing whitespace
-nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <silent> <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 "===================="
 " PERSONAL SHORTCUTS "
@@ -159,6 +179,9 @@ nnoremap <silent> <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " Spacing above and below
 nnoremap <CR> o<Esc>
 nnoremap \ O<Esc>
+
+" When pasting, keep the currently copied values in buffer
+vnoremap <leader>p "_dP
 
 "==============="
 " MISCELLANEOUS "
@@ -185,4 +208,4 @@ endfunction
 nnoremap <silent> <leader>t :call ToggleTmuxCopy()<CR>
 
 " Toggle autoindent for copy paste
-nnoremap <silent> <leader>p :set invpaste<CR>
+nnoremap <silent> <leader>pm :set invpaste<CR>
