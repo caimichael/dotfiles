@@ -178,7 +178,6 @@ nnoremap <silent> <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " Spacing above and below
 nnoremap <CR> o<Esc>
-nnoremap \ O<Esc>
 
 " When pasting, keep the currently copied values in buffer
 vnoremap <leader>p "_dP
@@ -209,3 +208,6 @@ nnoremap <silent> <leader>t :call ToggleTmuxCopy()<CR>
 
 " Toggle autoindent for copy paste
 nnoremap <silent> <leader>pm :set invpaste<CR>
+
+" Enforce being in the same directory as the file currently being edited
+autocmd BufEnter * silent! lcd %:p:h
