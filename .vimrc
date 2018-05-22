@@ -69,7 +69,12 @@ let g:rainbow_active = 1
 map <Leader> <Plug>e
 nmap S <Plug>(easymotion-overwin-f2)
 
-" IncSearch/General Search Behavior
+" Expand-Region
+" from https://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+" IncSearch
 set hlsearch
 set ignorecase
 set smartcase
@@ -93,7 +98,15 @@ let g:SuperTabNoCompleteAfter  = ['=','^',',','\s']
 let g:indentLine_enabled = 0
 
 " Ctrl-P Fuzzy Search
-let g:ctrlp_working_path_mode = 'c'
+" Some performance improvement tips from
+" https://stackoverflow.com/questions/21346068/slow-performance-on-ctrlp-it-doesnt-work-to-ignore-some-folders
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+    " Use 'ag' (Silver Searcher) instead of vim's native globpath()
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+nnoremap <Leader>p <Esc>:CtrlP<space>
 
 " Vimtex
 let g:airline#extensions#vimtex#enabled = 1
