@@ -27,9 +27,9 @@ set wrapscan
 set linebreak               " Don't break midword when wrapping lines
 set autoread    " Reload file open in Vim if edited outside of Vim session
 
-"============="
-  "Solarized"
-"============="
+"==========="
+" Solarized "
+"==========="
 "
 syntax enable
 let g:solarized_termtrans=1
@@ -173,6 +173,16 @@ vnoremap L 5l
 " Leave parens easily
 " imap <C-m> <Esc>:exec "normal f" .leavechar<CR>a<space>
 " ^above solution has some strange issues with insert mode enter
+
+"==================="
+" LANGUAGE SETTINGS "
+"==================="
+"
+autocmd FileType python     setlocal tabstop=4 shiftwidth=4 textwidth=79 foldnestmax=2 foldmethod=indent
+autocmd FileType matlab     setlocal tabstop=2 shiftwidth=2 | syntax keyword matlabRepeat parfor
+autocmd FileType julia      setlocal tabstop=4 shiftwidth=4 textwidth=92
+autocmd FileType markdown   setlocal tabstop=4 shiftwidth=4 textwidth=92 spell
+autocmd FileType tex        setlocal                        textwidth=92 spell
 
 "=========="
 " CLEANUP  "
