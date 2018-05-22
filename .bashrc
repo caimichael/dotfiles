@@ -12,6 +12,8 @@ fi
 alias ..='\cd ..'
 alias ...='\cd ../..'
 alias ....='\cd ../../..'
+alias .....='\cd ../../../..'
+alias ......='\cd ../../../../..'
 alias mv='mv -i'
 alias cp='cp -i'
 
@@ -20,9 +22,11 @@ alias ls='ls --color'
 alias la='ls -a'
 alias ld='ls -d */'
 alias ll='ls -l -h'
+alias lt='ll --sort=t'
+alias lth='ll --sort=t | head'
 
 # Hide files from ls
-hide="--hide='*.aux' --hide='*.bbl' --hide='*.blg' --hide='*.fls' --hide='*.log' --hide='*.nav' --hide='*.out' --hide='*.snm' --hide='*.thm' --hide='*.toc' --hide='*~' --hide='*.fdb_latexmk'"
+hide="--hide='*.aux' --hide='*.bbl' --hide='*.blg' --hide='*.fls' --hide='*.log' --hide='*.nav' --hide='*.out' --hide='*.snm' --hide='*.thm' --hide='*.toc' --hide='*~' --hide='*.fdb_latexmk' --hide='*.synctex.gz'"
 
 # OS-specific command aliases
 case $OSTYPE in
@@ -42,15 +46,19 @@ alias ga="git add"
 alias gb="git branch"
 alias gcm="git commit -m"
 alias gch="git checkout"
+alias gchb="git checkout -b"
 alias gd="git diff"
 alias gdt="git difftool"
 alias gg="git grep"
 alias gpo="git push origin"
 alias gs="git status"
+alias grm="git rm"
+alias gu="git reset HEAD"
 
 alias tmuxn='tmux new -s'
 alias tmuxa='tmux attach -t'
 alias tmuxd='tmux detach'
+alias tmuxk='tmux kill-session -t'
 alias tls='tmux list-sessions'
 
 # Custom bash prompt
@@ -71,24 +79,6 @@ mygrep() {
 # Set default file-creation mode to u=rwx, g=rwx, o=rx
 # Check your (human-readable) permissions using "umask -S"
 umask 0002
-
-# When evince and other graphical displays don't work, it's often because the
-# DISPLAY environment variable inside tmux isn't the same as the one outside
-# tmux.
-#
-# 1. Detach from tmux session and use cache_display
-# 2. Reattach to tmux session and use parse_display. (You'll have to do this in
-#    each pane in which you want to open a graphical display.)
-cache_display() {
-    echo "$DISPLAY" > ~/.DISPLAY
-    echo "DISPLAY cached as $DISPLAY"
-}
-
-parse_display() {
-    DISPLAY_OLD="$DISPLAY"
-    export DISPLAY="$(cat ~/.DISPLAY)"
-    echo "DISPLAY updated from $DISPLAY_OLD to $DISPLAY"
-}
 
 # Stop graphical display popup for password when git pushing
 unset SSH_ASKPASS
