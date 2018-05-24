@@ -108,6 +108,9 @@ if executable('ag')
 endif
 nnoremap <Leader>p <Esc>:CtrlP<space>
 
+" Vim-Signature (For handling marks)
+hi clear SignColumn " Remove that ugly gray
+
 " Vimtex
 let g:airline#extensions#vimtex#enabled = 1
 let g:vimtex_compiler_latexmk = {'continuous': 0}
