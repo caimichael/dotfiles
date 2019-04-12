@@ -131,6 +131,7 @@ install_vim_bundle_github   terryma       vim-expand-region
 install_vim_bundle_github   tpope         vim-fugitive
 install_vim_bundle_github   tpope         vim-sensible
 install_vim_bundle_github   vim-airline   vim-airline-themes
+install_vim_bundle_github   jpalardy      vim-slime
 install_vim_bundle_github   Yggdroot      indentLine
 install_vim_bundle_github   scrooloose    nerdtree
 install_vim_bundle_github   scrooloose    nerdcommenter

@@ -115,6 +115,10 @@ hi clear SignColumn " Remove that ugly gray
 let g:airline#extensions#vimtex#enabled = 1
 let g:vimtex_compiler_latexmk = {'continuous': 0}
 
+" Slime (for IDE-like interface between tmux, vim, and some REPL like Julia)
+let g:slime_target = "tmux"
+let g:slime_paste_file = "$HOME/.slime_paste"
+
 "============="
 " ENVIRONMENT "
 "============="
