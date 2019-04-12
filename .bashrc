@@ -3,9 +3,9 @@
 export EDITOR=vim
 export TERM=xterm-256color
 
-# Source global definitions
+#  Source global definitions
 if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+    . /etc/bashrc
 fi
 
 # User specific aliases
@@ -26,7 +26,7 @@ alias lt='ll --sort=t'
 alias lth='ll --sort=t | head'
 
 # Hide files from ls
-hide="--hide='*.aux' --hide='*.bbl' --hide='*.blg' --hide='*.fls' --hide='*.log' --hide='*.nav' --hide='*.out' --hide='*.snm' --hide='*.thm' --hide='*.toc' --hide='*~' --hide='*.fdb_latexmk' --hide='*.synctex.gz'"
+hide="--hide='*.aux' --hide='*.bbl' --hide='*.blg' --hide='*.fls' --hide='*.log' --hide='*.nav' --hide='*.out' --hide='*.snm' --hide='*.thm' --hide='*.toc' --hide='*~' --hide='*.fdb_latexmk' --hide='*.synctex.gz' --hide='*.vrb'"
 
 # OS-specific command aliases
 case $OSTYPE in
@@ -47,12 +47,14 @@ alias gb="git branch"
 alias gcm="git commit -m"
 alias gch="git checkout"
 alias gchb="git checkout -b"
+alias gcp="git cherry-pick"
 alias gd="git diff"
 alias gdt="git difftool"
 alias gdc="git diff-tree --no-commit-id --name-only -r"
 alias gg="git grep"
 alias gpo="git push origin"
 alias gs="git status"
+alias gsh="git show --pretty="" --name-only"
 alias grm="git rm"
 alias gu="git reset HEAD"
 
