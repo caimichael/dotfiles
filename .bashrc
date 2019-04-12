@@ -1,5 +1,7 @@
 # Michael Cai's .bashrc
 
+alias rebash="source ~/.bashrc"
+
 export EDITOR=vim
 export TERM=xterm-256color
 
