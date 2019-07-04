@@ -76,6 +76,24 @@ case $OSTYPE in
         brew install coreutils
         brew install tmux
         brew install wget
+        brew cask install mactex
+        brew cask install meld
+        brew cask install julia
+
+        # The following are easier to build using Brew than in Julia
+        brew install gcc   # HDF5.jl
+        brew install cmake # Polynomials.jl
+
+        if [ -z "$(grep texbin ~/.bashrc-local)" ]; then
+            echo "export PATH=\$PATH:/Library/TeX/texbin" >> ~/.bashrc-local
+            if [ $? -eq 0 ]; then
+                echo "${green}Added TeX Live binaries to PATH in ~/.bashrc-local${normal}"
+            else
+                echo "${red}Could not add TeX Live binaries to PATH in ~/.bashrc-local${normal}"
+            fi
+        else
+            echo "${red}Did not add TeX Live binaries to PATH in ~/.bashrc-local: already there${normal}"
+        fi
 
         my_timeout=gtimeout
         ;;
@@ -112,7 +130,7 @@ done
 if [ ! -f "$VIMDIR/autoload/pathogen.vim" ];
 then
     mkdir -p "$VIMDIR/autoload" "$VIMDIR/bundle"
-    $download "$VIMDIR/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
+    curl -LSso "$VIMDIR/autoload/pathogen.vim" https://tpo.pe/pathogen.vim
     echo "$SCRIPTNAME: installed pathogen.vim"
 fi
 
